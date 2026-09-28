@@ -1,0 +1,175 @@
+1. Процедурный способ
+procedural/task1.cpp
+#include <iostream>#include <cmath>
+using namespace std;
+int main()
+{
+    double a, b;
+    cin >> a >> b;
+
+    double c = sqrt(a * a + b * b);
+
+    cout << c << endl;
+
+    return 0;
+}
+procedural/task3.cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+
+    cout << (n / 10) % 10 << endl;
+
+    return 0;
+}
+
+2. Модульный способ
+Здесь основная часть программы находится в main, а вычисления вынесены в отдельные функции.
+modular/task1.cpp
+#include <iostream>#include <cmath>
+using namespace std;
+double findHypotenuse(double a, double b)
+{
+    return sqrt(a * a + b * b);
+}
+int main()
+{
+    double a, b;
+    cin >> a >> b;
+
+    cout << findHypotenuse(a, b) << endl;
+
+    return 0;
+}
+modular/task3.cpp
+#include <iostream>
+using namespace std;
+int findTens(int n)
+{
+    return (n / 10) % 10;
+}
+int main()
+{
+    int n;
+    cin >> n;
+
+    cout << findTens(n) << endl;
+
+    return 0;
+}
+
+3. Файловый-проектный способ
+Здесь программа разделена на несколько файлов.
+Задача 1
+file_project/task1/main.cpp
+#include <iostream>#include "triangle.h"
+using namespace std;
+int main()
+{
+    double a, b;
+    cin >> a >> b;
+
+    cout << findHypotenuse(a, b) << endl;
+
+    return 0;
+}
+file_project/task1/triangle.h
+#ifndef TRIANGLE_H#define TRIANGLE_H
+double findHypotenuse(double a, double b);
+#endif
+file_project/task1/triangle.cpp
+#include <cmath>#include "triangle.h"
+double findHypotenuse(double a, double b)
+{
+    return sqrt(a * a + b * b);
+}
+
+Задача 3
+file_project/task3/main.cpp
+#include <iostream>#include "number.h"
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+
+    cout << findTens(n) << endl;
+
+    return 0;
+}
+file_project/task3/number.h
+#ifndef NUMBER_H#define NUMBER_H
+int findTens(int n);
+#endif
+file_project/task3/number.cpp
+#include "number.h"
+int findTens(int n)
+{
+    return (n / 10) % 10;
+}
+
+4. Объектно-ориентированный способ
+Здесь используются классы и объекты.
+Задача 1
+object_oriented/task1.cpp
+#include <iostream>#include <cmath>
+using namespace std;
+class Triangle
+{private:
+    double a;
+    double b;
+public:
+    Triangle(double a, double b)
+    {
+        this->a = a;
+        this->b = b;
+    }
+
+    double getHypotenuse()
+    {
+        return sqrt(a * a + b * b);
+    }
+};
+int main()
+{
+    double a, b;
+    cin >> a >> b;
+
+    Triangle triangle(a, b);
+
+    cout << triangle.getHypotenuse() << endl;
+
+    return 0;
+}
+Задача 3
+object_oriented/task3.cpp
+#include <iostream>
+using namespace std;
+class Number
+{private:
+    int n;
+public:
+    Number(int n)
+    {
+        this->n = n;
+    }
+
+    int getTens()
+    {
+        return (n / 10) % 10;
+    }
+};
+int main()
+{
+    int n;
+    cin >> n;
+
+    Number number(n);
+
+    cout << number.getTens() << endl;
+
+    return 0;
+}
